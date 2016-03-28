@@ -14,6 +14,11 @@ gulp.task('img', function(){
 	.pipe(gulp.dest('build/img'));
 });
 
+gulp.task('js', function(){
+	return gulp.src('components/js/*')
+	.pipe(gulp.dest('build/js'));
+});
+
 gulp.task('fonts', function(){
 	return gulp.src('components/fonts/*')
 	.pipe(gulp.dest('build/fonts'));
@@ -34,7 +39,7 @@ gulp.task('upload', shell.task([
 	'aws s3 cp build s3://apps.kbia.org/politifact-2016 --recursive --profile kbia'
 ]));
 
-gulp.task('build', ['img','less','html']);
+gulp.task('build', ['img','less','js','html']);
 
 gulp.task('deploy', ['build', 'upload']);
 
